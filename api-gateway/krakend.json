@@ -1,0 +1,37 @@
+{
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "version": 3,
+  "endpoints": [
+    {
+      "endpoint": "/api/endpoints",
+      "backend": [
+        {
+          "url_pattern": "/users",
+          "host": ["http://user-service:8000"]
+        },
+        {
+          "url_pattern": "/problems/",
+          "host": ["http://problem-service:8000"]
+        },
+        {
+          "url_pattern": "/solutions",
+          "host": ["http://solution-service:8000"]
+        }
+      ]
+    }
+  ],
+  "extra_config": {
+    "documentation/openapi": {
+      "description": "This is a sample server. You can find out more about at [http://blah](http://blah.blah.com)",
+      "version": "1.0.0",
+      "host": "0.0.0.0",
+      "base_path": "/v1",
+      "contact_name": "The wonderful API department",
+      "contact_email": "contact@example.com",
+      "contact_url": "http://0.0.0.0/docs",
+      "license_name": "MIT",
+      "license_url": "https://opensource.org/licenses/MIT",
+      "schemes": ["http"]
+    }
+  }
+}

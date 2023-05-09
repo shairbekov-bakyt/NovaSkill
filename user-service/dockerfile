@@ -1,0 +1,11 @@
+FROM python:3.10
+
+WORKDIR user-service
+
+COPY related.txt ./related.txt
+
+RUN pip install --upgrade pip && pip install -r related.txt
+
+COPY . ./
+
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

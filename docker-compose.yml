@@ -1,0 +1,28 @@
+version: "3.9"
+services:
+  user-service:
+    build: ./user-service
+    ports:
+      - "8001:8000"
+
+  solution-service:
+    build: ./solution-service
+    ports:
+      - "8002:8000"
+
+  problem-service:
+    build: ./problem-service
+    ports:
+      - "8003:8000"
+
+  krakend_ce:
+    image: devopsfaith/krakend:watch
+    volumes:
+      - ./api-gateway/:/etc/krakend
+    ports:
+      - "80:8080"
+    command: ["run", "-d", "-c", "/etc/krakend/krakend.json"]
+    depends_on:
+      - user-service
+      - solution-service
+      - problem-service
